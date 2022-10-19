@@ -62,7 +62,9 @@ public:
     static QObjectList clientList();
     static QObjectList unmanagedList();
     static QObject *findClient(Predicate predicate, quint32 window);
+#ifdef DEEPIN_KWAYLAND
     static QObject *getDDEShellSurface(QObject * shellClient);
+#endif
     static void clientUpdateCursor(QObject *client);
     static void setClientDepth(QObject *client, int depth);
     static void defineWindowCursor(quint32 window, Qt::CursorShape cshape);

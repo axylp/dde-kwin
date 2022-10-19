@@ -64,6 +64,7 @@ void Chameleon::init()
     m_font = qGuiApp->font();
     updateTheme();
 
+#ifdef DEEPIN_WAYLAND
     if (!QX11Info::isPlatformX11() && m_client) {
         m_ddeShellSurface = static_cast<KWayland::Server::DDEShellSurfaceInterface*>(KWinUtils::getDDEShellSurface(m_client));
         if (m_ddeShellSurface) {
@@ -89,6 +90,7 @@ void Chameleon::init()
             );
         }
     }
+#endif
 
     connect(global_config, &ChameleonConfig::themeChanged, this, &Chameleon::updateTheme);
     connect(global_config, &ChameleonConfig::windowNoTitlebarPropertyChanged, this, &Chameleon::onNoTitlebarPropertyChanged);
