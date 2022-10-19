@@ -11,7 +11,9 @@
 
 #include <QDebug>
 #include <QGuiApplication>
+#ifdef DEEPIN_WAYLAND
 #include <QX11Info>
+#endif
 
 ChameleonWindowTheme::ChameleonWindowTheme(QObject *window, QObject *parent)
     : QObject(parent)
@@ -52,9 +54,11 @@ QString ChameleonWindowTheme::theme() const
 
 QPointF ChameleonWindowTheme::windowRadius() const
 {
+#ifdef DEEPIN_WAYLAND
     if(!QX11Info::isPlatformX11()) {
         return m_windowRadius;
     }
+#endif
     return ChameleonTheme::takePos(property("windowRadius"), QPointF(0.0, 0.0));
 }
 

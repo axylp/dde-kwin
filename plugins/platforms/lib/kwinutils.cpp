@@ -1413,6 +1413,7 @@ bool KWinUtils::Window::checkClientAllowToSplit(QObject *window)
     return ret;
 }
 
+#ifdef DEEPIN_KWAYLAND
 QObject *KWinUtils::getDDEShellSurface(QObject * shellClient)
 {
     if (!shellClient) {
@@ -1424,5 +1425,6 @@ QObject *KWinUtils::getDDEShellSurface(QObject * shellClient)
     QMetaObject::invokeMethod(workspace(), "slotGetDdeShellSurface", Q_ARG(KWin::AbstractClient*, c), Q_ARG(QObject *& , dss));
     return dss;
 }
+#endif
 
 #include "moc_kwinutils.cpp"

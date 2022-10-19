@@ -15,7 +15,11 @@ class ChameleonWindowTheme : public QObject
     Q_OBJECT
     Q_PROPERTY(qint64 validProperties READ validProperties WRITE setValidProperties NOTIFY validPropertiesChanged)
     Q_PROPERTY(QString theme READ theme NOTIFY themeChanged)
+#ifdef DEEPIN_KWAYLAND
+    Q_PROPERTY(QPointF windowRadius READ windowRadius NOTIFY windowRadiusChanged)
+#else
     Q_PROPERTY(QPointF windowRadius READ windowRadius WRITE setWindowRadius NOTIFY windowRadiusChanged)
+#endif
     Q_PROPERTY(qreal borderWidth READ borderWidth NOTIFY borderWidthChanged)
     Q_PROPERTY(QColor borderColor READ borderColor NOTIFY borderColorChanged)
     Q_PROPERTY(qreal shadowRadius READ shadowRadius NOTIFY shadowRadiusChanged)
@@ -37,7 +41,12 @@ public:
         WindowPixelRatioProperty = 0x200
     };
     Q_DECLARE_FLAGS(PropertyFlags, PropertyFlag)
+#ifdef DEEPIN_KWAYLAND
     Q_FLAG(PropertyFlags)
+#else
+    Q_FLAG(PropertyFlag)
+#endif
+
 
     explicit ChameleonWindowTheme(QObject *window, QObject *parent = nullptr);
 

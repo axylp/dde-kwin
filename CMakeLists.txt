@@ -10,6 +10,10 @@ if (NOT PROJECT_VERSION_MAJOR)
     set(PROJECT_VERSION_MAJOR 0)
 endif()
 
+if ("$ENV{DESKTOP_SESSION}" STREQUAL "deepin" OR "$ENV{DESKTOP_SESSION}" STREQUAL "uos")
+    add_definitions(-DDEEPIN_KWAYLAND)
+endif()
+
 add_definitions(
     -DPROJECT_NAME=\\"${PROJECT_NAME}\\"
     -DPROJECT_VERSION=\\"${PROJECT_VERSION}\\"

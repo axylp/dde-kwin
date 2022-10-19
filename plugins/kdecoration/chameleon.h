@@ -18,7 +18,9 @@
 #include <QSettings>
 #include <QScreen>
 #include <QPainterPath>
+#ifdef DEEPIN_KWAYLAND
 #include <KWayland/Server/ddeshell_interface.h>
+#endif
 
 class Settings;
 class ChameleonWindowTheme;
@@ -109,7 +111,9 @@ private:
 
     QPointer<KWin::EffectWindow> m_effect;
     QFont m_font;
+#ifdef DEEPIN_WAYLAND
     KWayland::Server::DDEShellSurfaceInterface * m_ddeShellSurface = nullptr;
+#endif
 };
 
 #endif // CHAMELEON_H
