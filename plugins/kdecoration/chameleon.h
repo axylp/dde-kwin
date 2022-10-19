@@ -13,6 +13,7 @@
 
 #include <kwineffects.h>
 
+#include <QFont>
 #include <QVariant>
 #include <QDir>
 #include <QSettings>
